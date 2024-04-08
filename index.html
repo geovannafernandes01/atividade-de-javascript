@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rolagem de Mensagem</title>
+</head>
+<body>
+
+<input type="text" id="mensagemInput" style="width: 300px;"><br>
+<button onclick="iniciarRolagem()">Iniciar Rolagem</button>
+<button onclick="pararRolagem()">Parar Rolagem</button>
+
+<script>
+var mensagem = "Esta é uma mensagem de exemplo para rolar dentro do campo de texto.";
+var intervalId;
+
+function rolarMensagem() {
+    mensagem = mensagem.substring(1) + mensagem.charAt(0); // Move o primeiro caractere para o final
+    document.getElementById("mensagemInput").value = mensagem; // Atualiza o valor do campo de texto
+}
+
+function iniciarRolagem() {
+    intervalId = setInterval(rolarMensagem, 100); // Chama a função rolarMensagem a cada 100 milissegundos
+}
+
+function pararRolagem() {
+    clearInterval(intervalId); // Para o intervalo de chamadas da função rolarMensagem
+}
+</script>
+
+</body>
+</html>
