@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva para a Data</title>
+</head>
+<body>
+
+<script>
+function calcularDiferenca() {
+    var inputDate = prompt("Digite a data no formato dd/mm/aaaa:");
+
+    // Verifica se a data foi digitada corretamente
+    var regex = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!regex.test(inputDate)) {
+        alert("Formato de data incorreto! Por favor, digite novamente.");
+        calcularDiferenca(); // Dá uma nova chance ao usuário
+        return;
+    }
+
+    var currentDate = new Date();
+    var targetDate = new Date(inputDate);
+
+    // Calcula a diferença em milissegundos
+    var difference = targetDate.getTime() - currentDate.getTime();
+
+    // Calcula dias, meses e anos
+    var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    var months = Math.floor(days / 30);
+    var years = Math.floor(months / 12);
+
+    // Exibe a contagem regressiva na página
+    document.getElementById("countdown").innerHTML = "Faltam " + days + " dias, " + months + " meses e " + years + " anos para a data digitada.";
+
+    // Determina a cor de fundo com base na hora do dia
+    var currentHour = currentDate.getHours();
+    if (currentHour >= 6 && currentHour < 12) {
+        document.bgColor = "white";
+        document.body.style.color = "black";
+    } else if (currentHour >= 12 && currentHour < 18) {
+        document.bgColor = "yellow";
+        document.body.style.color = "black";
+    } else if (currentHour >= 18 && currentHour < 24) {
+        document.bgColor = "dark";
+        document.body.style.color = "white";
+    } else {
+        document.bgColor = "blue";
+        document.body.style.color = "white";
+    }
+}
+
+calcularDiferenca(); // Chama a função ao carregar a página
+</script>
+
+<div id="countdown"></div>
+
+</body>
+</html>
